@@ -1,17 +1,18 @@
 from tkinter import *
 import tkinter.messagebox
 
-
 chessColorBlack = True
 stop = False
 
 #一行16个点
 length = 16
-chessPoint = [[0 for i in range(0,length)] for j in range(0,length)]
+chessPoint = [[0 for i in range(0,length+1)] for j in range(0,length+1)]
 surface = tkinter.Tk()
-surface.geometry('680x695')
+surface.geometry('510x525')
 surface.title("超级五子棋")
 
+
+#自己的代码
 def win():
     global stop
     if chessColorBlack:
@@ -79,14 +80,14 @@ def checkIfEnd (x,y):
 
 def draw (event):
     #每个格子40像素
-    if (event.x % 40 > 20):
-        event.x = event.x // 40 + 1
+    if (event.x % 30 > 15):
+        event.x = event.x // 30 + 1
     else:
-        event.x = event.x // 40
-    if (event.y % 40 > 20):
-        event.y = event.y // 40 + 1
+        event.x = event.x // 30
+    if (event.y % 30 > 15):
+        event.y = event.y // 30 + 1
     else:
-        event.y = event.y // 40
+        event.y = event.y // 30
 
     if (event.x > length):
         event.x = length
@@ -97,10 +98,10 @@ def draw (event):
     elif (event.y < 1):
         event.y = 1
 
-    left = event.x * 40 - 17
-    right = event.x * 40 + 17
-    up = event.y * 40 - 17
-    down = event.y * 40 + 17
+    left = event.x * 30 - 13
+    right = event.x * 30 + 13
+    up = event.y * 30 - 13
+    down = event.y * 30 + 13
     global chessColorBlack
     global chessPoint
     if (stop == False) :
@@ -119,7 +120,7 @@ def draw (event):
 def clear():
     grill.delete('chess')
 
-grill = Canvas(surface,height = 600,width = 600)
+grill = Canvas(surface,height = 500,width = 500)
 grill.pack(expand=YES, fill=BOTH)
 grill.bind("<Button-1>",draw)
 clean = Button(surface,text ="清空棋子",command=clear,bg = "red")
@@ -127,9 +128,9 @@ clean.pack(fill = X)
 
 def main():
     for row in range(1,length+1):
-         grill.create_line(40,row*40,640,row*40,width = 2,dash = (5,2))
+         grill.create_line(30,row*30,480,row*30,width = 2,dash = (5,2))
     for colonm in range(1,length+1):
-         grill.create_line(colonm*40,40,colonm*40,640,width = 2,dash = (5,2))
+         grill.create_line(colonm*30,30,colonm*30,480,width = 2,dash = (5,2))
     surface.mainloop()
 
 if __name__ == "__main__":
