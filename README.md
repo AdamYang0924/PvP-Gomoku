@@ -11,5 +11,3 @@
           #python3
 # 应用包：
           #tkinter
-# 安装：
-          #
